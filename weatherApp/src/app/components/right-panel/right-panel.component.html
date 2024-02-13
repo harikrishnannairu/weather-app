@@ -1,0 +1,119 @@
+<div class="container">
+    <div class="nav-bar">
+       <div class="nav-bar-section">
+        <div class="today" (click)="onTodayClick()" [ngClass]="{'today-active':wetherService.isToday}">Today</div>
+        <div class="week" (click)="onWeekClick()" [ngClass]="{'week-active':wetherService.isWeek}">Week</div>
+        <div class="underline" [ngClass]="wetherService.isToday ? 'underline-today' : 'underline-week' "></div>
+       </div> 
+       <div class="nav-bar-metrics">
+        <div class="celcius" (click)="onCelciusClick()" [ngClass]="{'celcius-active':wetherService.isCelsius}"> °C</div>
+        <div class="farenheit" (click)="onFarenClick()" [ngClass]="{'farenheit-active':wetherService.isFarenheit}">°F</div>
+        <div class="profile-img"><img class="profile-img-icon" src="../../../assets/profile-user.png" alt="profile-icon"></div>
+       </div>
+    </div>
+    <div class="data-section">
+        <!-- For week section display -->
+        <div class="week-cards" *ngIf="wetherService.isWeek">
+            <ng-container *ngFor="let eachDay of wetherService.weekData">
+            <div class="each-day">
+                <div class="day">{{eachDay.day}}</div>
+                <div class="temp-img"><img src={{eachDay.summaryImage}} alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">{{this.wetherService.isCelsius ? eachDay.tempMin : this.wetherService.celsiusToFahrenheit(eachDay.tempMin)}}° - </span> <span class="temp-max">{{this.wetherService.isCelsius ? eachDay.tempMax : this.wetherService.celsiusToFahrenheit(eachDay.tempMax)}}°</span></div>
+            </div>
+        </ng-container>
+            <!-- <div class="each-day">
+                <div class="day">Sun</div>
+                <div class="temp-img"><img src="../../../assets/sun.png" alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">20°</span> <span class="temp-max">-18°</span></div>
+            </div>
+            <div class="each-day">
+                <div class="day">Sun</div>
+                <div class="temp-img"><img src="../../../assets/sun.png" alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">20°</span> <span class="temp-max">-18°</span></div>
+            </div>
+            <div class="each-day">
+                <div class="day">Sun</div>
+                <div class="temp-img"><img src="../../../assets/sun.png" alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">20°</span> <span class="temp-max">-18°</span></div>
+            </div>
+            <div class="each-day">
+                <div class="day">Sun</div>
+                <div class="temp-img"><img src="../../../assets/sun.png" alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">20°</span> <span class="temp-max">-18°</span></div>
+            </div>
+            <div class="each-day">
+                <div class="day">Sun</div>
+                <div class="temp-img"><img src="../../../assets/sun.png" alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">20°</span> <span class="temp-max">-18°</span></div>
+            </div>
+            <div class="each-day">
+                <div class="day">Sun</div>
+                <div class="temp-img"><img src="../../../assets/sun.png" alt="sun image"></div>
+                <div class="temp-min-max"><span class="temp-min">20°</span> <span class="temp-max">-18°</span></div>
+            </div> -->
+        </div>
+        <div class="today-card" *ngIf="wetherService.isToday">
+         <ng-container *ngFor="let eachHour of wetherService.todayData">
+            <div class="each-day">
+                <div class="day">{{eachHour.time}}</div>
+                <div class="temp-img"><img src={{eachHour.summaryImage}} alt="sun image"></div>
+                <div class="temp-min-max" style="display: flex;align-items: flex-start;justify-content: center;"
+                >{{this.wetherService.isCelsius ? eachHour.temparature : this.wetherService.celsiusToFahrenheit(eachHour.temparature)}}<sup>{{this.wetherService.isCelsius ? "°C" : "°F"}}</sup></div>
+            </div>
+         </ng-container>
+        </div>
+        <div class="highlight-section">
+            <div class="higlight-heading">Today's Highlight</div>
+            <!-- each card -->
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-card-title">UV</div>
+                    <div class="gauge">
+                        <div class="gauge-body">
+                            <div class="gauge-fill"></div>
+                            <div class="gauge-cover"></div>
+                        </div>
+                    </div>
+                    <div class="highlight-card-value">{{this.wetherService.todaysHighlight.uvIndex}}</div>
+                </div>
+                <!-- second -->
+                <div class="highlight-card">
+                    <div class="highlight-card-title">wind status</div>
+                       <div class="highlight-card-wind-spped">{{this.wetherService.todaysHighlight.windStatus}} <span class="speed-unit">km/hr</span></div>
+                    <div class="highlight-card-wind-img">
+                        <span class="wind-image"><img src="../../../assets/wind.png"></span>
+                    </div>
+                </div>
+                <!-- third -->
+                <div class="highlight-card">
+                    <div class="highlight-card-title">Sunrise & Sunset</div>
+                    <div class="sunrise-set-section">
+                        <div class="sunrise">
+                            <div class="sunrise-img"><img src="../../../assets/arrow-up.png"></div>
+                            <div class="sunrise-time">{{this.wetherService.todaysHighlight.sunrise}} am</div>
+                        </div>
+                        <div class="sunset">
+                            <div class="sunset-img"><img src="../../../assets/arrow-down.png"></div>
+                            <div class="sunset-time">{{this.wetherService.todaysHighlight.sunset}} pm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-card-title">Humidity</div>
+                    <div class="highlight-card-wind-spped">{{this.wetherService.todaysHighlight.humidity}} <sup class="speed-unit">%</sup></div>
+                    <div class="humidity-smmary">{{this.wetherService.todaysHighlight.humidity < 50 ? "Normal" : "High"}} <fa-icon [icon]="faThumbsUp" style="color:blue"></fa-icon></div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-card-title">Visiblity</div>
+                    <div class="highlight-card-wind-spped">{{this.wetherService.todaysHighlight.visibility}}<span class="speed-unit"> km</span></div>
+                    <div class="humidity-smmary">{{this.wetherService.todaysHighlight.visibility > 2 ? "Normal" : "Less"}} <fa-icon [icon]="faFaceFrown" style="color:blue"></fa-icon></div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-card-title">Air Quality</div>
+                    <div class="highlight-card-wind-spped">{{this.wetherService.todaysHighlight.airQuality}} </div>
+                    <div class="humidity-smmary">{{this.wetherService.todaysHighlight.airQuality < 100 ? "Satisfactory" : "Unhealthy"}} <fa-icon [icon]="faThumbsDown" style="color:blue"></fa-icon></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

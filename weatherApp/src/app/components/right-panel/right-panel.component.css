@@ -1,0 +1,305 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.nav-bar{
+    flex:2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+
+    .nav-bar-section{
+        display: flex;
+        flex-direction: row;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: sans-serif;
+        gap: 10px;
+        cursor: pointer;
+
+        .underline{
+            width:50px;
+            height: 2px;
+            background-color: black;
+            margin-top: 1.5rem;
+        }
+        .underline-today{
+            transform:translate3d(-230%,0,0);
+            transition:100ms;
+        }
+        .underline-week{
+            transform:translate3d(-110%,0,0);
+            transition:100ms;
+        }
+        .today{
+            color: rgb(164, 164, 164);
+        }
+        .week{
+            color: rgb(164, 164, 164);
+        }
+        .today:hover{
+            color:black;
+        }
+        .week:hover{
+            color:black;
+        }
+        .today-active{
+            color: black !important;
+        }
+        .week-active{
+            color: black !important;
+        }
+    }
+    .nav-bar-metrics{
+        display: flex;
+        align-items: center;
+        gap:10px;
+        cursor:pointer;
+
+        .celcius{
+            background-color: white;
+            color:black;
+            padding:5px;
+            border-radius:50%;
+        }
+        .farenheit{
+            background-color: white;
+            color:black;
+            padding:5px;
+            border-radius:50%;
+            margin-right: 20px;
+        }
+        .farenheit:hover{
+            color:white;
+            background-color:black;
+        }
+        .celcius:hover{
+            color:white;
+            background-color:black;
+        }
+        .celcius-active{
+            color:white;
+            background-color:black;
+        }
+        .farenheit-active{
+            color:white;
+            background-color:black;
+        }
+        .profile-img{
+            width:30px;
+            height: 30px;
+            border-radius:50%;
+            margin:0 10px;
+            .profile-img-icon{
+                width:30px;
+            }
+        }
+    }
+
+}
+
+.data-section{
+    flex:12;
+    display:flex;
+    flex-direction:column;
+
+    .week-cards{
+        flex:1;
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items: center;
+        gap:10px;
+    }
+    .today-card{
+        flex:1;
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items: center;
+        gap:10px;
+    }
+        .each-day{
+            border:none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight:400;
+            height: 95px;
+            width:75px;
+            background-color: white;
+            text-align: center;
+            display: inline-grid;
+            align-items: center;
+            .temp-img{
+                img{
+                    width:40px;
+                    height:40px;
+                }
+            }
+        }
+
+    /* } */
+    .highlight-section{
+        flex:3;
+        display:flex;
+        flex-direction: column;
+        .higlight-heading{
+            flex: 1;
+            font-size: 18px;
+            font-weight: 500;
+            color: black;
+            margin:10px 10px;
+        }
+        .highlight-cards{
+            flex: 8;
+            display: flex;
+            flex-direction: row;
+            justify-content:center;
+            align-items:center;
+            flex-wrap: wrap;
+            gap: 10px;
+            .highlight-card{
+                display: flex;
+                flex-direction: column;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+                border-radius: 8px;
+                background-color: white;
+                width:150px;
+                height: 120px;
+                padding: 5px 0px;
+                .highlight-card-title{
+                    flex: 1;
+                    color:rgb(105, 105, 105);
+                    text-align: left;
+                    padding:2px;
+                    margin-bottom: -20px;
+                    font-size: 12px;
+                    font-weight:500;
+                    width: 100%;
+                    padding-left:20px;
+                }
+                .highlight-card-wind-spped{
+                    font-size: 34px;
+                    text-align: left;
+                    font-weight: 400;
+                    flex: 2;
+                    width: 100%;
+                    padding-left: 14px;
+                    padding-top: 10px;
+                    .speed-unit{
+                        font-size:20px !important;
+                        margin-left: -3px;
+                    }
+                }
+                .highlight-card-wind-img{
+                    width: 100%;
+                    text-align: left;
+                    padding-left: 20px;
+                    .wind-image img{
+                        width:20px;
+                        height:20px;
+                        text-align: left;
+                    }
+                }
+                .sunrise-set-section{
+                    flex: 2;
+                    display: flex;
+                    flex-direction:column;
+                    justify-content:space-evenly;
+                    .sunrise{
+                        display: flex;
+                        flex-direction:row;
+                        justify-content: space-around;
+                        align-items:center;
+                        .sunrise-img img{
+                            width:20px;
+                            height:20px;
+                        }
+                        .sunrise-time{
+                            font-size:14px;
+                            /* color: rgb(105, 105, 105); */
+                        }
+                    }
+                    .sunset{
+                        display: flex;
+                        flex-direction:row;
+                        justify-content: space-around;
+                        align-items:center;
+                        .sunset-img img{
+                            width:20px;
+                            height:20px;
+                        }
+                        .sunset-time{
+                            font-size:14px;
+                            /* color: rgb(105, 105, 105); */
+                        }
+                    }
+                }
+                .humidity-smmary{
+                    flex: 1;
+                    width: 100%;
+                    text-align: left;
+                    padding-left: 20px;
+                    font-size: 13px;
+                }
+                .gauge{
+                    flex: 2;
+                    width: 50%;
+                    max-width: 180px;
+                    font-size: 32px;
+                    color: #004033;
+                    font-weight: 500;
+                    margin-top: -10px;
+                    .gauge-body{
+                        width: 100%;
+                        height:0;
+                        padding-bottom: 50%;
+                        background:#f3f3f4;
+                        position: relative;
+                        border-top-left-radius: 100% 200%;
+                        border-top-right-radius: 100% 200%;
+                        overflow: hidden;
+                        margin-top: 1rem;
+                    }
+                    .gauge-fill{
+                        position: absolute;
+                        top:100%;
+                        left: 0;
+                        width:inherit;
+                        height:100%;
+                        background: #ffbf5e;
+                        transform-origin: center top;
+                        transform:rotate(0.25turn);
+                        transition:transform 0.2s ease-out;
+
+                    }
+                    .gauge-cover{
+                        width:75%;
+                        height: 150%;
+                        background: #ffffff;
+                        border-radius:50%;
+                        position:absolute;top:25%;
+                        left:50%;
+                        transform:translateX(-50%);
+                        display: flex;
+                        justify-content:center;
+                        align-items: center;
+                        padding-bottom: 25%;
+                        box-sizing: border-box;color: #ffffff;
+                    }
+                }
+                .highlight-card-value{
+                    margin-top: -40px;
+                    z-index: 1;
+                    font-size: 23px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
